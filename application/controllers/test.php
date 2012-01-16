@@ -16,16 +16,20 @@ class Test extends CI_Controller {
 		$this->load->library('twitter_oauth', $result);
 		
 		$response = $this->twitter_oauth->get_request_token(site_url("test/twitter_access_token"));
-		$this->session->set_userdata('facebook_token_secret', $response['token_secret']);
+		$this->session->set_userdata('twitter_token_secret', $response['token_secret']);
 		redirect($response['redirect']);
 	}
 	 
 	function twitter_access_token()
 	{
-		$params = $this->params;
-		$this->load->library('twitter_oauth', $params);
-		$response = $this->twitter_oauth->get_access_token(false, $this->session->userdata('twitter_token_secret'));
+		$this->load->model('service_model');
+		$params = $this->service_model->searchEntry('twitter');
+		$result = array('key' => $params->key, 'secret' => $params->secret);
+		$this->load->library('twitter_oauth', $result);
 		
+		$response = $this->twitter_oauth->get_access_token(false, $this->session->userdata('twitter_token_secret'));
+		var_dump($response);
+		die();
 		echo '
 		<script>
 		window.close();
@@ -47,7 +51,8 @@ class Test extends CI_Controller {
 	 
 	function facebook_access_token()
 	{
-		$params = $this->params_facebook;
+		$this->load->model('service_model');
+		$params = $this->service_model->searchEntry('facebook');
 		$this->load->library('facebook_oauth', $params);
 		$response = $this->facebook_oauth->get_access_token(false, $this->session->userdata('facebook_token_secret'));
 		
