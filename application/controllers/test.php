@@ -4,7 +4,7 @@ class Test extends CI_Controller {
 
 	
 	function index(){
-		echo '<a href="'.site_url("test/twitter_request_token").'" onclick="window.open(this.href,\'name\',\'height=200,width=700\'); return false;">access via twitter</a>';
+		echo '<a href="'.site_url("test/twitter_request_token").'" onclick="window.open(this.href,\'name\',\'height=200,width=700\'); return false;">access via twitter</a></br>';
 		echo '<a href="'.site_url("test/facebook_request_token").'" onclick="window.open(this.href,\'name\',\'height=200,width=700\'); return false;">access via facebook</a>';
 	}
 
@@ -23,12 +23,21 @@ class Test extends CI_Controller {
 	function twitter_access_token()
 	{
 		$this->load->model('service_model');
+		$this->load->library('twitteroauth/twitteroauth','','twitteroauth');
+		
 		$params = $this->service_model->searchEntry('twitter');
 		$result = array('key' => $params->key, 'secret' => $params->secret);
 		$this->load->library('twitter_oauth', $result);
 		
 		$response = $this->twitter_oauth->get_access_token(false, $this->session->userdata('twitter_token_secret'));
-		var_dump($response);
+		
+		$this->twitteroauth->prepare($params->key, $params->secret, $response['oauth_token'], $response['oauth_token_secret']);
+		$content = $this->twitteroauth->get("statuses/home_timeline");
+		
+		
+		foreach($content as $row){
+			echo $row->text."<br><br>";
+		}
 		die();
 		echo '
 		<script>
