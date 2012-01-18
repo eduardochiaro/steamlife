@@ -14,7 +14,7 @@ class Test extends CI_Controller {
 		$params = $this->service_model->searchEntry('twitter');
 		$result = array('key' => $params->key, 'secret' => $params->secret);
 		$this->load->library('twitter_oauth', $result);
-		
+		//test
 		$response = $this->twitter_oauth->get_request_token(site_url("test/twitter_access_token"));
 		$this->session->set_userdata('twitter_token_secret', $response['token_secret']);
 		redirect($response['redirect']);
