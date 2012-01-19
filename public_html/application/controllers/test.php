@@ -55,7 +55,7 @@ class Test extends CI_Controller {
 		
 		$response = $this->facebook_oauth->get_request_token(site_url("test/facebook_access_token"));
 		
-		redirect(redirect("https://www.facebook.com/dialog/oauth?client_id=".$params->key."&redirect_uri=".site_url("test/facebook_access_token")));
+		redirect(redirect("https://www.facebook.com/dialog/oauth?client_id=".$params->key."&redirect_uri=".site_url("test/facebook_access_token").'&response_type=token'));
 	}
 	 
 	function facebook_access_token()
