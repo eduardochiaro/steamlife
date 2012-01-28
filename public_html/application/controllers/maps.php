@@ -36,7 +36,7 @@ class Maps extends CI_Controller {
 	function save(){
 		
 		$position = $this->input->get_post('position');
-		$name = $this->input->get_post('position');
+		$name = $this->input->get_post('name');
 		
 		$geocode = $this->googlemapapi->getGeocode($position);
 		
