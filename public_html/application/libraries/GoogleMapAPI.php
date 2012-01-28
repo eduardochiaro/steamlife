@@ -1506,12 +1506,12 @@ class GoogleMapAPI {
                 die('GoogleMapAPI:createMarkerIcon: Error reading shadow image: ' . $iconShadowImage);
             }
         }
-        
+
         if($iconAnchorX === 'x') {
             $iconAnchorX = (int) ($_image_info[0] / 2);
         }
         if($iconAnchorY === 'x') {
-            $iconAnchorY = (int) ($_image_info[1] / 2);
+            $iconAnchorY = (int) $_image_info[1] ;
         }
         if($infoWindowAnchorX === 'x') {
             $infoWindowAnchorX = (int) ($_image_info[0] / 2);
@@ -1519,7 +1519,7 @@ class GoogleMapAPI {
         if($infoWindowAnchorY === 'x') {
             $infoWindowAnchorY = (int) ($_image_info[1] / 2);
         }
-                        
+           
         $icon_info = array(
                 'image' => $iconImage,
                 'iconWidth' => $_image_info[0],
