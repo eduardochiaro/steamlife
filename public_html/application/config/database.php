@@ -49,8 +49,8 @@ $active_group = 'default';
 $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
-$db['default']['username'] = HTTP_X_FLX_DBUSER;
-$db['default']['password'] = HTTP_X_FLX_DBPASSWORD;
+$db['default']['username'] = $_ENV["HTTP_X_FLX_DBUSER"];
+$db['default']['password'] = $_ENV["HTTP_X_FLX_DBPASSWORD"];
 $db['default']['database'] = 'steamlife';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
