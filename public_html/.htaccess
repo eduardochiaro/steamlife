@@ -31,6 +31,8 @@
 
     ErrorDocument 404 /index.php
 </IfModule>
+<IfModule mod_env.c>
 SetEnv HTTP_X_FLX_DB localhost
 SetEnv HTTP_X_FLX_DBUSER root
 SetEnv HTTP_X_FLX_DBPASSWORD ''
+</IfModule>
