@@ -1,3 +1,4 @@
 .gitgnore
 public_html/application/logs/*
 .project
+.DS_Store
