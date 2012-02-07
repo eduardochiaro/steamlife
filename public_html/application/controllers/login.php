@@ -2,20 +2,22 @@
 
 class Login extends CI_Controller {
 
+	var $_data = null;
+
 	function __construct(){
 		// load controller parent
 		parent::__construct();
+		
+		$this->_data = new stdClass();
 	}
 	public function index()
 	{
 		$this->load->helper('form');
 		
-		$data['title'] = "Flixmedia";
-		
 		$url = $this->session->userdata('actual_url');
 		$this->session->set_userdata('actual_url',null);
 		if(empty($url)){
-			$url = "dashboard";
+			$url = "welcome";
 		}
 		
 		$username = $this->input->post('username');
@@ -30,11 +32,11 @@ class Login extends CI_Controller {
 		
 		$error = $this->session->userdata('login_error');
 		if($error){
-			$data['error'] = $error;
+			$this->_data->error = $error;
 		}
 		$this->session->set_userdata('login_error',null);
 		
-		$this->load->view('login/form', $data);
+		$this->load->view('login/form', $this->_data);
 	}
 	
 	/**
@@ -73,7 +75,10 @@ class Login extends CI_Controller {
 	            return false;
 			}
 				
-			$row = array('user' => $return);
+			$row = array(
+				'id' => $return->id,
+				'email' => $return->email
+			);
 
             //Destroy old session
             $this->session->sess_destroy();
@@ -85,7 +90,7 @@ class Login extends CI_Controller {
             $this->session->set_userdata('user_data', $row);
             
             //Set logged_in to true
-            $this->session->set_userdata(array('logged_in' => true));            
+            $this->session->set_userdata('logged_in', true);            
             
             //Login was successful            
             return true;

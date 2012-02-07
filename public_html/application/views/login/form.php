@@ -1,3 +1,4 @@
+<?php $this->load->view('default/header'); ?>
 <div id="login_form">
 	<h1>Steamlife Login</h1>
 	<?php if(isset($error)):?><div class="error"><?php echo $error ?></div><?php endif;?>
@@ -9,4 +10,6 @@
 	echo form_close();
 	?>
 
-</div><!-- end login_form-->
+</div>
+
+<?php $this->load->view('default/footer'); ?>

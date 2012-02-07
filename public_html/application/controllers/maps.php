@@ -28,7 +28,7 @@ class Maps extends CI_Controller {
 			$this->googlemapapi->addMarkerByCoords($row->position_x, $row->position_y ,'<b>'.$row->name.'</b>','','',site_url('static/images/home.png'));
 		}
 
-		$this->load->view('maps');
+		$this->load->view('maps/view');
 		
 	}
 	

@@ -1,11 +1,26 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Test extends CI_Controller {
+class Service extends CI_Controller {
 
+    function __construct()
+    {
+        // Call the Model constructor
+        parent::__construct();
+		$this->load->model('service_model');
+    }
 	
 	function index(){
 		echo '<a href="'.site_url("test/twitter_request_token").'" onclick="window.open(this.href,\'name\',\'height=200,width=700\'); return false;">access via twitter</a></br>';
 		echo '<a href="'.site_url("test/facebook_request_token").'" onclick="window.open(this.href,\'name\',\'height=200,width=700\'); return false;">access via facebook</a>';
+	}
+	
+	function request_token($id = 0){
+		if(!$id){
+			$this->load->view('default/close');
+			return;
+		}
+		$params = $this->service_model->searchEntryId($id);
+		var_dump($params);
 	}
 
 	function twitter_request_token()
