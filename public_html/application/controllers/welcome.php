@@ -16,7 +16,7 @@ class Welcome extends CI_Controller {
 	{
 		$user = $this->session->userdata('user_data');
 			
-		$active_service = $this->service_model->getUserService($user->id);
+		$active_service = $this->service_model->getUserService($user['id']);
 		
 		$this->_data->services = $active_service;
 	

@@ -1,7 +1,7 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 
-class facebook_oauth
+class facebook
 {
     const SCHEME = 'https';
     const HOST = 'graph.facebook.com';
@@ -21,7 +21,7 @@ class facebook_oauth
      *
      * @param array $params
      */
-    public function facebook_oauth($params)
+    public function __construct($params)
     {
         $this->CI = get_instance();
         $this->CI->load->helper('oauth');
@@ -47,6 +47,7 @@ class facebook_oauth
     {
     	
     	
+        return array('redirect' => "https://www.facebook.com/dialog/oauth?client_id=".$this->_consumer['key']."&redirect_uri=".$callback.'&response_type=token');
     
     }
     
@@ -90,8 +91,9 @@ class facebook_oauth
         //both the access token and the secret key. (You only
         //need the secret key if you use HMAC-SHA1 signatures.)
         parse_str($response, $oauth);
+        
         //Return the token and secret for storage
-        return $oauth;
+      	return $oauth;
     }
     
     /**

@@ -1,7 +1,7 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 
-class twitter_oauth
+class twitter
 {
     const SCHEME = 'https';
     const HOST = 'api.twitter.com';
@@ -21,7 +21,7 @@ class twitter_oauth
      *
      * @param array $params
      */
-    public function twitter_oauth($params)
+    public function __construct($params)
     {
         $this->CI = get_instance();
         $this->CI->load->helper('oauth');
