@@ -9,12 +9,7 @@ class Service extends CI_Controller {
 		$this->load->model('service_model');
     }
 	
-	function index(){
-		echo '<a href="'.site_url("test/twitter_request_token").'" onclick="window.open(this.href,\'name\',\'height=200,width=700\'); return false;">access via twitter</a></br>';
-		echo '<a href="'.site_url("test/facebook_request_token").'" onclick="window.open(this.href,\'name\',\'height=200,width=700\'); return false;">access via facebook</a>';
-	}
-	
-	function request_token($id = 0){
+	function request($id = 0){
 		if(!$id){
 			$this->load->view('default/close');
 			return;
@@ -22,12 +17,17 @@ class Service extends CI_Controller {
 		$params = $this->service_model->searchEntryId($id);
 		$this->load->library('social/'.$params->class, (array)$params);
 		 
-		$response = $this->{$params->class}->get_request_token(site_url("service/access_token/".$id));
+		$response = $this->{$params->class}->get_request_token(site_url("service/access/".$id));
 		redirect($response['redirect']);	
 	}
 	
-	function access_token($id){
+	function access($id){
 		var_dump($_GET,$_POST);
+		
+		/*
+		* oauth_token
+		* oauth_verifier
+		*/
 		
 		//$this->service->saveUserService();
 	}
