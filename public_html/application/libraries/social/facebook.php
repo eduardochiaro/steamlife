@@ -44,8 +44,7 @@ class facebook
      *         signing an array with the token_secret and the redirect url
      */
     public function get_request_token($callback)
-    {
-    	
+    {    	
     	
         return array('redirect' => "https://www.facebook.com/dialog/oauth?client_id=".$this->_consumer['key']."&redirect_uri=".$callback.'&response_type=token');
     
@@ -63,6 +62,18 @@ class facebook
      */
     public function get_access_token($token = false, $secret = false, $verifier = false)
     {
+        	
+    	 $token_url = "https://graph.facebook.com/oauth/access_token?"
+	       . "client_id=" . $this->_consumer['key'] . "&redirect_uri=" . site_url("service/access/2")
+	       . "&client_secret=" . $this->_consumer['secret'];
+	
+	     $response = @file_get_contents($token_url);
+	     $params = null;
+	     parse_str($response, $params);
+	     
+	     var_dump($params);
+	     die();
+	   
     
         //If no request token was specified then attempt to get one from the url
         if($token === false && isset($_GET['oauth_token']))$token = $_GET['oauth_token'];

@@ -22,7 +22,15 @@ class Service extends CI_Controller {
 	}
 	
 	function access($id){
-		var_dump($_GET,$_POST);
+		if(!$id){
+			$this->load->view('default/close');
+			return;
+		}
+		$params = $this->service_model->searchEntryId($id);
+		$this->load->library('social/'.$params->class, (array)$params);
+	
+		$response = $this->{$params->class}->get_access_token();
+		var_dump($response);
 		
 		/*
 		* oauth_token
