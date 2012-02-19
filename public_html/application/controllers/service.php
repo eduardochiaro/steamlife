@@ -28,7 +28,13 @@ class Service extends CI_Controller {
 		}
 		$params = $this->service_model->searchEntryId($id);
 		$this->load->library('social/'.$params->class, (array)$params);
-	
+		
+		
+		if($id == 2){
+			$this->load->view('service/fbreturn');
+			return;
+		}
+		
 		$response = $this->{$params->class}->get_access_token();
 		var_dump($response);
 		
@@ -40,8 +46,15 @@ class Service extends CI_Controller {
 		//$this->service->saveUserService();
 	}
 	
-	
-	
+	function fbaccess($id){
+		if(!$id){
+			$this->load->view('default/close');
+			return;
+		}
+		$response = $this->input->get('access_token');		
+		var_dump($response);
+
+	}
 
 	function twitter_request_token()
 	{

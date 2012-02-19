@@ -76,7 +76,7 @@ class facebook
 	   
     
         //If no request token was specified then attempt to get one from the url
-        if($token === false && isset($_GET['oauth_token']))$token = $_GET['oauth_token'];
+        if($token === false && isset($_GET['access_token']))$token = $_GET['access_token'];
         if($verifier === false && isset($_GET['oauth_verifier']))$verifier = $_GET['oauth_verifier'];
         //If all else fails attempt to get it from the request uri.
         if($token === false && $verifier === false)
