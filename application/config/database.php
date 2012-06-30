@@ -48,9 +48,9 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = "steamlife.mysql.fluxflex.com";
-$db['default']['username'] = "steamlife";
-$db['default']['password'] = "Zt2UCCRwoaN";
+$db['default']['hostname'] = "localhost";
+$db['default']['username'] = "root";
+$db['default']['password'] = "";
 $db['default']['database'] = 'steamlife';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
