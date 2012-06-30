@@ -5,7 +5,7 @@ class Login extends CI_Controller {
 	var $_data = null;
 
 	function __construct(){
-		// load controller parent
+		// load parent controller
 		parent::__construct();
 		
 		$this->_data = new stdClass();
