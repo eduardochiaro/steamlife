@@ -31,8 +31,11 @@ class Maps extends CI_Controller {
 		$this->load->view('maps/view');
 		
 	}
+	public function easy()
+	{
 	
-	
+		$this->load->view('maps/easy');
+	}
 	function save(){
 		
 		$position = $this->input->get_post('position');

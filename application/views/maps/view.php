@@ -29,7 +29,7 @@
 	
 	<button type="submit">send</button>
 </form>
-
+<a href="javascript:initialize()">test</a>
 <script>
 $('document').ready(function(){
 	$('#navigator').click(function(){
@@ -46,6 +46,32 @@ function success(position){
 }
 function error(msg) {
   	console.log(msg);
+}
+var map;
+var service;
+var infowindow;
+
+function initialize() {
+  var pyrmont = new google.maps.LatLng(-33.8665433,151.1956316);
+
+
+  var request = {
+    location: pyrmont,
+    radius: '500',
+    query: 'restaurant'
+  };
+
+  service = new google.maps.places.PlacesService(mapmap);
+  service.textSearch(request, callback);
+}
+
+function callback(results, status) {
+  if (status == google.maps.places.PlacesServiceStatus.OK) {
+    for (var i = 0; i < results.length; i++) {
+      var place = results[i];
+      createMarker(results[i]);
+    }
+  }
 }
 </script>
 </body>
