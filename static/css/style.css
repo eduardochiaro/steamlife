@@ -19,9 +19,21 @@ body{
 }
 #map_box{
 	height: 43px;
-	border-top: 2px solid #333333;
+	border-top: 1px solid rgba(0,0,0,0.8);
 	background: #ffffff;
 	z-index: 2;
+}
+#map_my_location{
+	display: block;
+	width: 30px;
+	height: 30px;
+	text-indent: -9999px;
+	background: #ffffff url(../images/icons/map-direction-7.png) center center no-repeat;
+	margin: 6px;
+	float: left;
+}
+#search{
+	float: left;
 }
 #plus_map{
 	/*background: transparent url(../images/map_plus.png) top left no-repeat;

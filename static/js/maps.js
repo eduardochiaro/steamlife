@@ -1,4 +1,5 @@
 
+
 var map;
 var location_point;
 var service;
@@ -18,7 +19,7 @@ function geo(){
 				}
 				 
 				// Log that this is the initial position.
-				console.log( "Initial Position Found" );
+				//console.log( "Initial Position Found" );
 				 
 				
   				location_point = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
@@ -36,10 +37,10 @@ function geo(){
 		);
 	}	
 }
-function initialize() {
+function initialize(_div_id) {
 	location_point = new google.maps.LatLng(0,0);
 
-	map = new google.maps.Map(document.getElementById('map'), {
+	map = new google.maps.Map(document.getElementById(_div_id), {
 		mapTypeId: google.maps.MapTypeId.ROADMAP,
 		center: location_point,
 		zoom: 12
@@ -54,9 +55,6 @@ function getZoomLevel(m){
     if (z<0) z=0;
     return z;
 }
-$('document').ready(function(){
-	initialize();
-});
 function callback(results, status) {
   if (status == google.maps.places.PlacesServiceStatus.OK) {
     for (var i = 0; i < results.length; i++) {
@@ -68,9 +66,7 @@ function callback(results, status) {
   map.setZoom(zoom);
 }
 
-function search(){
-	
-	_request = $('#search').val();
+function search(_request){
 	
 	var request = {
 		location: location_point,
@@ -100,15 +96,4 @@ function createMarker(place){
     });
     markerList.push(marker);
 }
-var backgroundResizeFun=function(){
-	$('#map_container').css({
-		width:$(window).width()+'px',
-		height:($(window).height() - 45)+'px'
-	});
-}
-$(document).ready(function(){
-	backgroundResizeFun();
-	$(window).resize(function(){
-		backgroundResizeFun();
-	});
-});
+

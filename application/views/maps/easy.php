@@ -24,7 +24,7 @@ v\:* {
         <div id="map"></div>
     </div>
     <div id="map_box">
-    <a href="javascript:geo()">my location</a><br>
+    <a href="#" id="map_my_location">my location</a>
     <select id="search">
         <option>
             accounting
@@ -409,9 +409,10 @@ v\:* {
         <option>
             zoo
         </option>
-    </select> <button id="" onclick="search()">search</button> 
+    </select> <button id="map_search">search</button> 
     </div>
-    <script src="<?php echo site_url('static/maps.js')?>" type="text/javascript">
-</script>
+    <script src="<?php echo site_url('static/js/maps.js')?>" type="text/javascript"></script>
+    <script src="<?php echo site_url('static/js/site.js')?>" type="text/javascript"></script>
+
 </body>
 </html>
